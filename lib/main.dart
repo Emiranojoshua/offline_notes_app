@@ -22,8 +22,19 @@ class MainApp extends StatelessWidget {
             ),
             borderRadius: BorderRadius.circular(10),
           ),
+          border: OutlineInputBorder(
+            borderSide: const BorderSide(width: 3),
+            borderRadius: BorderRadius.circular(10),
+          ),
           focusedBorder: OutlineInputBorder(
             borderSide: const BorderSide(width: 3),
+            borderRadius: BorderRadius.circular(10),
+          ),
+          errorBorder: OutlineInputBorder(
+            borderSide: const BorderSide(
+              width: 3,
+              color: Colors.red,
+            ),
             borderRadius: BorderRadius.circular(10),
           ),
         ),
