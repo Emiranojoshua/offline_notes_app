@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:offline_notes_app/features/auth/pages/login_page.dart';
 import 'package:offline_notes_app/features/auth/pages/signup_page.dart';
 
 void main() {
@@ -50,6 +51,10 @@ class MainApp extends StatelessWidget {
       ),
       title: "Task App",
       home: SignupPage(),
+      routes: {
+        '/loginPage': (context) => const LoginPage(),
+        '/signupPage': (context) => const SignupPage(),
+      },
     );
   }
 }

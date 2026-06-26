@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:offline_notes_app/features/auth/pages/signup_page.dart';
 
-class SignupPage extends StatefulWidget {
-  static MaterialPageRoute route() => MaterialPageRoute(
-    builder: (context) => const SignupPage(),
-  );
-  const SignupPage({super.key});
+class LoginPage extends StatefulWidget {
+  static MaterialPageRoute route() =>
+      MaterialPageRoute(builder: (context) => const LoginPage());
+  const LoginPage({super.key});
 
   @override
-  State<SignupPage> createState() => _SignupPageState();
+  State<LoginPage> createState() => _LoginPageState();
 }
 
-class _SignupPageState extends State<SignupPage> {
+class _LoginPageState extends State<LoginPage> {
   late final TextEditingController _emailController;
   late final TextEditingController _passwordController;
   late final TextEditingController _nameController;
@@ -18,23 +18,23 @@ class _SignupPageState extends State<SignupPage> {
 
   @override
   void initState() {
+    super.initState();
     _emailController = TextEditingController();
     _passwordController = TextEditingController();
     _nameController = TextEditingController();
     _formkey = GlobalKey<FormState>();
-    super.initState();
   }
 
   @override
   void dispose() {
     _emailController.dispose();
-    _passwordController.dispose();
+    _passwordController.dispose();  
     _nameController.dispose();
     _formkey.currentState!.validate();
     super.dispose();
   }
 
-  void _signUpUser() {
+  void _login() {
     if (_formkey.currentState!.validate()) {}
   }
 
@@ -49,26 +49,13 @@ class _SignupPageState extends State<SignupPage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const Text(
-                'Sign Up',
+                'Login',
                 style: TextStyle(
                   fontSize: 50,
                   fontWeight: FontWeight.bold,
                 ),
               ),
               const SizedBox(height: 30),
-              TextFormField(
-                controller: _emailController,
-                decoration: const InputDecoration(
-                  hintText: 'Name',
-                ),
-                validator: (value) {
-                  if (value == null || value.trim().isEmpty) {
-                    return "Name Field cannot be empty!";
-                  }
-                  return null;
-                },
-              ),
-              const SizedBox(height: 15),
 
               TextFormField(
                 controller: _emailController,
@@ -78,7 +65,7 @@ class _SignupPageState extends State<SignupPage> {
                 validator: (value) {
                   if (value == null ||
                       value.trim().isEmpty ||
-                      value.trim().contains("@")) {
+                      !value.trim().contains("@")) {
                     return "Name Field cannot be empty!";
                   }
                   return null;
@@ -103,9 +90,9 @@ class _SignupPageState extends State<SignupPage> {
               ),
               const SizedBox(height: 20),
               ElevatedButton(
-                onPressed: _signUpUser,
-                child: Text(
-                  "SIGN UP",
+                onPressed: _login,
+                child: const Text(
+                  "Login",
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 16,
@@ -115,17 +102,17 @@ class _SignupPageState extends State<SignupPage> {
               const SizedBox(height: 20),
               GestureDetector(
                 onTap: () {
-                  Navigator.of(context).pushNamed("/loginPage");
+                  Navigator.of(context).push(SignupPage.route());
                 },
                 child: RichText(
                   text: TextSpan(
-                    text: "Already have an account? ",
+                    text: "Don't have an account? ",
                     style: Theme.of(
                       context,
                     ).textTheme.titleMedium,
                     children: [
                       TextSpan(
-                        text: "Sign in",
+                        text: "Login",
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                         ),
